@@ -1,0 +1,15 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Preference {
+  _id: String!
+  name: String!
+  active: Boolean!
+}
+
+type Query {
+  test: [Preference!]!
+  hello: Preference!
+  hellonextr: [Preference!]!
+}

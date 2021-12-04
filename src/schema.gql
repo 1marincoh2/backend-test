@@ -1,0 +1,363 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CityModel {
+  _id: ID!
+  city: String!
+  region: String!
+  regionCode: Float!
+}
+
+type CityModelAggregateGroupBy {
+  _id: ID
+}
+
+type CityModelConnection {
+  """Array of edges."""
+  edges: [CityModelEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type CityModelCountAggregate {
+  _id: Int
+}
+
+input CityModelDeleteFilter {
+  _id: IDFilterComparison
+  and: [CityModelDeleteFilter!]
+  or: [CityModelDeleteFilter!]
+}
+
+type CityModelDeleteResponse {
+  _id: ID
+  city: String
+  region: String
+  regionCode: Float
+}
+
+type CityModelEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the CityModel"""
+  node: CityModel!
+}
+
+input CityModelFilter {
+  _id: IDFilterComparison
+  and: [CityModelFilter!]
+  or: [CityModelFilter!]
+}
+
+type CityModelMaxAggregate {
+  _id: ID
+}
+
+type CityModelMinAggregate {
+  _id: ID
+}
+
+input CityModelSort {
+  direction: SortDirection!
+  field: CityModelSortFields!
+  nulls: SortNulls
+}
+
+enum CityModelSortFields {
+  _id
+}
+
+input CityModelUpdateFilter {
+  _id: IDFilterComparison
+  and: [CityModelUpdateFilter!]
+  or: [CityModelUpdateFilter!]
+}
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+input CreateCityModel {
+  _id: ID
+  city: String
+  region: String
+  regionCode: Float
+}
+
+input CreateManyCityModelsInput {
+  """Array of records to create"""
+  cityModels: [CreateCityModel!]!
+}
+
+input CreateManyPreferenceModelsInput {
+  """Array of records to create"""
+  preferenceModels: [CreatePreferenceModel!]!
+}
+
+input CreateOneCityModelInput {
+  """The record to create"""
+  cityModel: CreateCityModel!
+}
+
+input CreateOnePreferenceModelInput {
+  """The record to create"""
+  preferenceModel: CreatePreferenceModel!
+}
+
+input CreatePreferenceModel {
+  _id: ID
+  active: Boolean
+  name: String
+}
+
+input CursorPaging {
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+input DeleteManyCityModelsInput {
+  """Filter to find records to delete"""
+  filter: CityModelDeleteFilter!
+}
+
+input DeleteManyPreferenceModelsInput {
+  """Filter to find records to delete"""
+  filter: PreferenceModelDeleteFilter!
+}
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+input DeleteOneCityModelInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOnePreferenceModelInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input IDFilterComparison {
+  eq: ID
+  gt: ID
+  gte: ID
+  iLike: ID
+  in: [ID!]
+  is: Boolean
+  isNot: Boolean
+  like: ID
+  lt: ID
+  lte: ID
+  neq: ID
+  notILike: ID
+  notIn: [ID!]
+  notLike: ID
+}
+
+type Mutation {
+  createManyCityModels(input: CreateManyCityModelsInput!): [CityModel!]!
+  createManyPreferenceModels(input: CreateManyPreferenceModelsInput!): [PreferenceModel!]!
+  createOneCityModel(input: CreateOneCityModelInput!): CityModel!
+  createOnePreferenceModel(input: CreateOnePreferenceModelInput!): PreferenceModel!
+  deleteManyCityModels(input: DeleteManyCityModelsInput!): DeleteManyResponse!
+  deleteManyPreferenceModels(input: DeleteManyPreferenceModelsInput!): DeleteManyResponse!
+  deleteOneCityModel(input: DeleteOneCityModelInput!): CityModelDeleteResponse!
+  deleteOnePreferenceModel(input: DeleteOnePreferenceModelInput!): PreferenceModelDeleteResponse!
+  updateManyCityModels(input: UpdateManyCityModelsInput!): UpdateManyResponse!
+  updateManyPreferenceModels(input: UpdateManyPreferenceModelsInput!): UpdateManyResponse!
+  updateOneCityModel(input: UpdateOneCityModelInput!): CityModel!
+  updateOnePreferenceModel(input: UpdateOnePreferenceModelInput!): PreferenceModel!
+}
+
+type PageInfo {
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+}
+
+type PreferenceModel {
+  _id: ID!
+  active: Boolean!
+  name: String!
+}
+
+type PreferenceModelAggregateGroupBy {
+  _id: ID
+}
+
+type PreferenceModelConnection {
+  """Array of edges."""
+  edges: [PreferenceModelEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type PreferenceModelCountAggregate {
+  _id: Int
+}
+
+input PreferenceModelDeleteFilter {
+  _id: IDFilterComparison
+  and: [PreferenceModelDeleteFilter!]
+  or: [PreferenceModelDeleteFilter!]
+}
+
+type PreferenceModelDeleteResponse {
+  _id: ID
+  active: Boolean
+  name: String
+}
+
+type PreferenceModelEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the PreferenceModel"""
+  node: PreferenceModel!
+}
+
+input PreferenceModelFilter {
+  _id: IDFilterComparison
+  and: [PreferenceModelFilter!]
+  or: [PreferenceModelFilter!]
+}
+
+type PreferenceModelMaxAggregate {
+  _id: ID
+}
+
+type PreferenceModelMinAggregate {
+  _id: ID
+}
+
+input PreferenceModelSort {
+  direction: SortDirection!
+  field: PreferenceModelSortFields!
+  nulls: SortNulls
+}
+
+enum PreferenceModelSortFields {
+  _id
+}
+
+input PreferenceModelUpdateFilter {
+  _id: IDFilterComparison
+  and: [PreferenceModelUpdateFilter!]
+  or: [PreferenceModelUpdateFilter!]
+}
+
+type Query {
+  cityModel(
+    """The id of the record to find."""
+    id: ID!
+  ): CityModel
+  cityModels(
+    """Specify to filter the records returned."""
+    filter: CityModelFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [CityModelSort!] = []
+  ): CityModelConnection!
+  preferenceModel(
+    """The id of the record to find."""
+    id: ID!
+  ): PreferenceModel
+  preferenceModels(
+    """Specify to filter the records returned."""
+    filter: PreferenceModelFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [PreferenceModelSort!] = []
+  ): PreferenceModelConnection!
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+input UpdateCityModel {
+  _id: ID
+  city: String
+  region: String
+  regionCode: Float
+}
+
+input UpdateManyCityModelsInput {
+  """Filter used to find fields to update"""
+  filter: CityModelUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateCityModel!
+}
+
+input UpdateManyPreferenceModelsInput {
+  """Filter used to find fields to update"""
+  filter: PreferenceModelUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdatePreferenceModel!
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+input UpdateOneCityModelInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateCityModel!
+}
+
+input UpdateOnePreferenceModelInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdatePreferenceModel!
+}
+
+input UpdatePreferenceModel {
+  _id: ID
+  active: Boolean
+  name: String
+}

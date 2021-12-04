@@ -1,0 +1,12 @@
+overwrite: true
+schema: "localhost:3000"
+documents: "src/schema.qgl"
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-resolvers"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
