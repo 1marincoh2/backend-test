@@ -9,12 +9,12 @@ import {MongooseModule} from '@nestjs/mongoose';
 
 @Module({
     imports: [
-        MongooseModule.forRoot('mongodb://adminmarin:pass@0.0.0.0:49154/ihc?authSource=admin')
-        // MongooseModule.forRootAsync({
-        //     // connectionName: DBNameCnx,
-        //     useFactory: (configService: ConfigService) => configService.get(CONFIG_DB_CONFIG),
-        //     inject: [ConfigService],
-        // })
+       // MongooseModule.forRoot('mongodb://adminmarin:pass@0.0.0.0:49154/ihc?authSource=admin')
+        MongooseModule.forRootAsync({
+            // connectionName: DBNameCnx,
+            useFactory: (configService: ConfigService) => configService.get(CONFIG_DB_CONFIG),
+            inject: [ConfigService],
+        })
     ],
     exports: []
 })
