@@ -5,10 +5,13 @@ import {InjectModel} from "@nestjs/mongoose";
 
 @Injectable()
 export class ClassificationService {
-    constructor(@InjectModel(Classification.name) public model: ModelType<ClassificationDocument>) {
+    constructor(@InjectModel(Classification.name) public model: ModelType<ClassificationDocument, Classification>) {
     }
 
     async all() {
-       return  await this.model.find().limit(2).exec()
+        return await this.model.find({
+            name: "tulum",
+            "sucural.name": "centro"
+        })
     }
 }

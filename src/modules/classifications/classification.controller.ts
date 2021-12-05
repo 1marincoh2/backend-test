@@ -1,4 +1,4 @@
-import {Controller} from '@nestjs/common';
+import {Controller, Get} from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
 import {ModelType} from "@typegoose/typegoose/lib/types";
 import {Classification, ClassificationDocument} from "./classification/schema/classification.schema";
@@ -13,8 +13,19 @@ import {ClassificationService} from "./classification.service";
 export class ClassificationController {
     crudOptions = {}
     model
+
     constructor(public service: ClassificationService) {
-       this.model = service.model
+        this.model = service.model
     }
+
+    @Get('consulta/prueba')
+    async prubea() {
+        const result = await this.service.all()
+        return {
+            data: true,
+            result
+        }
+    }
+
 
 }
