@@ -62,13 +62,13 @@ SelectQueryBuilder.prototype.getOne = async function () {
 //         }
 //         console.log("start executeEntitiesAndRawResults")
 //         this.expressionMap.queryEntity = true;
-//         const {entities, raw} = await this.executeEntitiesAndRawResults(queryRunner) as {
-//             entities: any[];
+//         const {schema, raw} = await this.executeEntitiesAndRawResults(queryRunner) as {
+//             schema: any[];
 //             raw: any[];
 //         };
 //         console.log("end executeEntitiesAndRawResults")
 //         console.log("start map")
-//         const items = entities.map((entitiy, index) => {
+//         const items = schema.map((entitiy, index) => {
 //             const metaInfo = Reflect.getMetadata(VIRTUAL_COLUMN_KEY, entitiy) ?? {};
 //             const item = raw[index];
 //

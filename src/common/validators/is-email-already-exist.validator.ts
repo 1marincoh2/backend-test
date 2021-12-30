@@ -1,6 +1,6 @@
 import { registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 import { getRepository } from 'typeorm';
-// import { User } from 'src/modules/system/users/entities';
+// import { User } from 'src/modules/system/users/schema';
 
 @ValidatorConstraint({ async: true })
 export class IsEmailAlreadyExistConstraint implements ValidatorConstraintInterface {

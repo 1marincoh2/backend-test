@@ -5,6 +5,7 @@ import {PreferenceModule} from './modules/hot/preference/preference.module';
 import {ScheduleModule} from "@nestjs/schedule";
 import { SucursalModule } from './modules/terminal/payment/sucursal.module';
 import { ClassificationModule } from './modules/classifications/classification.module';
+import { SystemModule } from './modules/system/system.module';
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { ClassificationModule } from './modules/classifications/classification.m
         PreferenceModule,
         SucursalModule,
         ClassificationModule,
+        SystemModule,
     ],
     controllers: [AppController],
 })
