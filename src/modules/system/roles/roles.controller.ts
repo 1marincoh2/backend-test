@@ -1,17 +1,21 @@
 import {Controller} from '@nestjs/common';
-import {Crud, CrudController, CrudRequest, Override, ParsedRequest} from '@nestjsx/crud';
-import {Role} from './schema/role.schema';
+import {Crud} from "nestjs-mongoose-crud"
+import {Role, RoleDocument} from './schema/role.schema';
 import {RolesService} from './roles.service';
-import {ApiBody, ApiProperty, ApiTags} from "@nestjs/swagger";
-import {LoginDto} from "../auth/dtos";
-import {PaginationQuery} from "../../../common/interfaces/PaginationQuery";
+import {ApiTags} from "@nestjs/swagger";
+import {ModelType} from "@typegoose/typegoose/lib/types";
 
 @ApiTags('System')
+@Crud({
+    model: Role,
+})
 @Controller('system/roles')
 export class RolesController {
-    constructor(
-        readonly service: RolesService,
-    ) {
+    crudOptions = {}
+    model: ModelType<RoleDocument, Role>
+
+    constructor(public service: RolesService) {
+        this.model = service.model
     }
 
 }

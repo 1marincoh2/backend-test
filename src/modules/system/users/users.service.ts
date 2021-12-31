@@ -63,15 +63,7 @@ export class UsersService {
      * @param data { username: string, email: string }
      */
     async getByUser(data: { username?: string; email?: string }) { //: Promise<User> {
-        // return this.model
-        //     .createQueryBuilder('user')
-        //     .where(data)
-        //     .addSelect('user.password')
-        //     .addSelect('user.enabled')
-        //     .getOne()
-        //     .catch((err) => {
-        //         throw new BadGatewayException('Something happened', err);
-        //     });
+        return await this.model.findOne(data).select(['_id', 'username', 'email'])
     }
 
     /**
