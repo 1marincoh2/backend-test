@@ -7,20 +7,24 @@ import {PATTERN_VALID_EMAIL} from '../../../config/config.constants';
 import {User} from '../users/schema/user.schema';
 import {PayloadToken} from "../../../common/interfaces/jwt";
 import {RegisterDto} from "./dtos/register.dto";
-
+import { AccessTokensService } from '../access-tokens/access-tokens.service';
+import * as moment from 'moment';
 export interface ApiLoginSuccess {
     user: User;
     accessToken: string;
 }
 
 export interface JwtPayload {
-    sub: number;
+    sub: string;
     username: string;
 }
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {
+    constructor(
+        private readonly usersService: UsersService, 
+        private readonly tokensService: AccessTokensService,
+        private readonly jwtService: JwtService) {
     }
 
     async validateUser(userData: string, password: string): Promise<any | User> {
@@ -29,6 +33,7 @@ export class AuthService {
         !PATTERN_VALID_EMAIL.test(userData) ? (data.username = userData) : (data.email = userData);
 
         const user = await this.usersService.getByUser(data);
+
         if (!user) {
             throw new NotFoundException('Your account does not exist');
         }
@@ -40,24 +45,23 @@ export class AuthService {
             throw new BadRequestException('Invalid credentials');
         }
         delete user.password;
+        user.password  = undefined;
         return user;
     }
 
     async login(user: User) {
+        delete user.password;
         const payload: JwtPayload = {username: user.username, sub: user._id};
         const token = this.jwtService.sign(payload);
         const decode: any = this.jwtService.decode(token);
-        // await this.tokensService.saveToken({
-        //   expiresAt: moment(decode.exp * 1000).toDate(),
-        //   name: 'Token',
-        //   revoked: false,
-        //   jwt: token,
-        //   isActive: true,
-        //   refresh: false,
-        //   scopes: '[]',
-        //   clientId: 1,
-        //   userId: user.id,
-        // });
+        await this.tokensService.saveToken({
+          expiresAt: moment(decode.exp * 1000).toDate(),
+          revoked: false,
+          jwt: token,
+          refresh: false,
+          user: user._id
+        })
+
         return {
             user,
             token,
@@ -128,7 +132,7 @@ export class AuthService {
     }
 
     generateJWT(user: Partial<User>, expiration: number = 86400): { access_token: string, decode: PayloadToken | any } {
-        const payload = {username: user.email, sub: user.id};
+        const payload = {username: user.email, sub: user._id};
         const token = this.jwtService.sign(payload, {
             expiresIn: expiration,
         });

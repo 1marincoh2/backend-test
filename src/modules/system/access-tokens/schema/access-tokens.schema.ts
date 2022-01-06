@@ -9,7 +9,7 @@ import {User} from "../../users/schema/user.schema";
 export class AccessTokens extends Document {
 
     @Prop({type: SchemaMongose.Types.ObjectId, ref: User.name, required: true})
-    user: number | null;
+    user: string;
 
     @Prop({type: Boolean, default: false})
     revoked: boolean;

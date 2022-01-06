@@ -107,7 +107,7 @@ export class AuthController {
         const lastToken = await this.authAccessTokensService.findToken(token);
         if (lastToken) {
 
-            const jwt = await this.authService.generateJWT({id: sub, email: username});
+            const jwt = await this.authService.generateJWT({_id: sub, email: username});
             lastToken.jwt = jwt.access_token;
             lastToken.expiresAt = moment(jwt.decode.exp * 1000).toDate();
             lastToken.refresh = true;

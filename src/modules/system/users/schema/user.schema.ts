@@ -2,18 +2,20 @@ import {Exclude} from 'class-transformer';
 import {ApiProperty} from '@nestjs/swagger';
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import {Document} from "mongoose";
-
 @Schema({
     collection: 'system_user',
     timestamps: true
 })
-export class User extends Document {
+export class User {
+    
+    _id?: string;
+
     @ApiProperty()
-    @Prop({type: String, required: true})
+    @Prop({type: String, required: true, unique: true })
     email!: string;
 
     @ApiProperty()
-    @Prop({type: String, required: true})
+    @Prop({type: String, required: true, unique: true })
     username: string;
 
     @ApiProperty()
@@ -36,7 +38,7 @@ export class User extends Document {
 
     @ApiProperty()
     @Prop({type: Date, required: false})
-    public deletedAt: Date;
+    deletedAt?: Date;
 }
 
 export type UserDocument = User & Document;

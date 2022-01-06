@@ -63,14 +63,14 @@ export class UsersService {
      * @param data { username: string, email: string }
      */
     async getByUser(data: { username?: string; email?: string }) { //: Promise<User> {
-        return await this.model.findOne(data).select(['_id', 'username', 'email'])
+        return await this.model.findOne(data).select(['_id', 'username', 'email','password','enabled'])
     }
 
     /**
      * Get user by id
      * @param id User id
      */
-    async getOneById(id: number): Promise<User | null> {
+    async getOneById(id: string): Promise<User | null> {
         return (
             (await this.model.findOne({_id: id}).catch((err) => {
                 throw new BadGatewayException('Something happened', err);
